@@ -1,4 +1,4 @@
-# Exam 101 Objectives
+# LPIC 1 Exam Objects for both 101 and 102 parts
 
 The following are the areas in which you must be proﬁcient in order to pass the 101 exam.
 This exam is broken into four topics (101–104), each of which has three to eight objectives.
@@ -200,3 +200,168 @@ environment variables
 * Find files and commands on a Linux system
 * Know the location and propose of important file and directories as defined in the FHS
 * The following is a partial list of the used files, terms and utilities: find, locate,updatedb, whereis, which, type, /etc/updatedb.conf
+
+# Topic 105: Shells and Shell Scripting
+
+## 105.1: Shells and Shell Scripting
+
+* Set environment variables (e.g. PATH) at login or when spawning a new shell.
+* Write Bash functions for frequently used sequences of commands.
+* Maintain skeleton directories for new user accounts.
+* Set command search path with the proper directory.
+
+## 105.2 Customize or write simple scripts
+
+* Use standard sh syntax (loops, tests).
+* Use command substitution.
+* Test return values for success or failure or other information provided by a command.
+* Execute chained commands.
+* Perform conditional mailing to the superuser.
+* Correctly select the script interpreter through the shebang (#!) line.
+* Manage the location, ownership, execution and suid-rights of scripts.
+
+# Topic 106: User Interfaces and Desktops
+
+## 106.1 Install and configure X11
+
+* Understanding of the X11 architecture.
+* Basic understanding and knowledge of the X Window configuration file.
+* Overwrite specific aspects of Xorg configuration, such as keyboard layout.
+* Understand the components of desktop environments, such as display managers and window managers.
+* Manage access to the X server and display applications on remote X servers.
+* Awareness of Wayland.
+
+## 106.2 Graphical Desktops
+
+* Awareness of major desktop environments
+* Awareness of protocols to access remote desktop sessions
+
+# 106.3 Accessibility
+
+* Basic knowledge of visual settings and themes.
+* Basic knowledge of assistive technology.
+
+# Topic 107: Administrative Tasks
+
+## 107.1 Manage user and group accounts and related system files
+
+* Add, modify and remove users and groups.
+* Manage user/group info in password/group databases.
+* Create and manage special purpose and limited accounts.
+
+## 107.2 Automate system administration tasks by scheduling jobs
+
+* Manage cron and at jobs.
+* Configure user access to cron and at services.
+* Understand systemd timer units.
+
+## 107.3 Localisation and internationalisation
+
+* Configure locale settings and environment variables.
+* Configure timezone settings and environment variables.
+
+# Topic 108: Essential System Services
+
+## Topic 108: Essential System Services
+
+* Set the system date and time.
+* Set the hardware clock to the correct time in UTC.
+* Configure the correct timezone.
+* Basic NTP configuration using ntpd and chrony.
+* Knowledge of using the pool.ntp.org service.
+* Awareness of the ntpq command.
+
+## 108.2 System logging
+
+* Basic configuration of rsyslog.
+* Understanding of standard facilities, priorities and actions.
+* Query the systemd journal.
+* Filter systemd journal data by criteria such as date, service or priority
+* Configure persistent systemd journal storage and journal size
+* Delete old systemd journal data
+* Retrieve systemd journal data from a rescue system or file system copy
+* Understand interaction of rsyslog with systemd-journald
+* Configuration of logrotate.
+* Awareness of syslog and syslog-ng.
+
+# 108.3 Mail Transfer Agent (MTA) basics
+
+* Create e-mail aliases.
+* Configure e-mail forwarding.
+* Knowledge of commonly available MTA programs (postfix, sendmail, exim) (no configuration)
+
+# 108.4 Manage printers and printing
+
+* Basic CUPS configuration (for local and remote printers).
+* Manage user print queues.
+* Troubleshoot general printing problems.
+* Add and remove jobs from configured printer queues.
+
+# Topic 109: Networking Fundamentals
+
+## 109.1 Fundamentals of internet protocols
+
+* Demonstrate an understanding of network masks and CIDR notation.
+* Knowledge of the differences between private and public "dotted quad" IP addresses.
+* Knowledge about common TCP and UDP ports and services (20, 21, 22, 23, 25, 53, 80, 110, 123, 139, 143, 161, 162, 389, 443, 465, 514, 636, 993, 995).
+* Knowledge about the differences and major features of UDP, TCP and ICMP.
+* Knowledge of the major differences between IPv4 and IPv6.
+* Knowledge of the basic features of IPv6.
+
+## 109.2 Persistent network configuration
+
+* Understand basic TCP/IP host configuration
+* Configure ethernet and wi-fi network configuration using NetworkManager
+* Awareness of systemd-networkd
+
+## 109.3 Basic network troubleshooting
+
+* Manually configure network interfaces, including viewing and changing the configuration of network interfaces using iproute2.
+* Manually configure routing, including viewing and changing routing tables and setting the default route using iproute2.
+* Debug problems associated with the network configuration.
+* Awareness of legacy net-tools commands.
+
+## 109.4 Configure client side DNS
+
+* Query remote DNS servers.
+* Configure local name resolution and use remote DNS servers.
+* Modify the order in which name resolution is done.
+* Debug errors related to name resolution.
+* Awareness of systemd-resolved
+
+# Topic 110: Security
+
+## 110.1 Perform security administration tasks
+
+* Audit a system to find files with the suid/sgid bit set.
+* Set or change user passwords and password aging information.
+* Being able to use nmap and netstat to discover open ports on a system.
+* Set up limits on user logins, processes and memory usage.
+* Determine which users have logged in to the system or are currently logged in.
+* Basic sudo configuration and usage.
+
+## 110.2 Setup host security
+
+* Awareness of shadow passwords and how they work.
+* Turn off network services not in use.
+* Understand the role of TCP wrappers.
+
+## 110.3 Securing data with encryption
+
+* Perform basic OpenSSH 2 client configuration and usage.
+* Understand the role of OpenSSH 2 server host keys.
+* Perform basic GnuPG configuration, usage and revocation.
+* Use GPG to encrypt, decrypt, sign and verify files.
+* Understand SSH port tunnels (including X11 tunnels).
+
+
+
+
+
+
+
+
+
+
+
+
