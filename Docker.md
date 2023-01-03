@@ -81,3 +81,51 @@ will pull a docker image and dependancies using the docker engine. The engine is
 
 ## Bret Fisher Youtube [https://www.youtube.com/@BretFisher]
 
+## Creating and using containers
+
+Checking the version of Docker and associated infrastructure:
+
+CLI: Docker Version, always used first to verify the status and version
+
+CLI: Docker Info, displays most configuration values of the current docker install
+
+Check all available commands:
+
+CLI: Docker
+
+There is now a hierarchy of commands
+
+This means there are now management and common commands
+
+## Difference between an image and Container
+
+* An image is the application we want to run
+* A container is an instance of that image running as a process
+* You can have many containers running off the same image
+* In this lecture our image will be the Nginx web server
+* Dockers default image "registry" is called Docker Hub (hub.docker.com)
+
+## Running an Nginx container
+
+CLI: docker container run --publish 80:80 nginx
+
+* Downloaded image 'nginx' from Docker Hub
+* Started a new container from that image
+* Opened port 80 on the host IP
+* Routes that traffic to the container IP, port 80
+
+Note: you will get a "bind" error if the left number [Host port] is already in use. If this is the case, an easy alternative is 8888
+
+## Viewing container status in the CLI
+
+docker container ls - will show regular status
+
+docker container ls -a - will show additional info
+
+## Stopping a running container
+
+Docker stop + first 3 - 4 characters of unique id
+
+## Naming a container
+
+docker container run --publish 80:80 --detach --name webhost nginx
