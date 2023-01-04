@@ -129,3 +129,63 @@ Docker stop + first 3 - 4 characters of unique id
 ## Naming a container
 
 docker container run --publish 80:80 --detach --name webhost nginx
+
+## See the process running within a container
+
+docker container top 'name'
+
+## Remove containers
+
+docker container rm 'id' 'id' 'id'
+
+Note: error thrown if one or more of the containers are running
+
+## What happens in the background when 'docker container run' command is run
+
+1. Looks for that image locally in image cache, doesn't find anything
+2. Then looks in remote image repo (defaults to Docker Hub)
+3. Downloads the latest version (nginx:latest by default)
+4. Creates new container based on that image and prepares to start
+5. Gives it a virtual IP on a private network inside docker engine
+6. Opens up port 80 on host and forwards to port 80 in container
+7. Starts container by using the CMD in the image Dockerfile
+
+## Containers vs. VM's
+
+Containers are not Mini VM's
+
+* They are just processes
+* Limited to what resources they can access
+* Exit when process stops
+
+by using a process viewing tool, one can see the docker process among other processes.
+
+docker ps will display docker specific processes
+ps will display that docker process mixed in with all of the processes of the operating system.
+
+## Finding help
+
+CLI docker --help
+
+or
+
+[docs.docker.com]
+
+## Managing Multiple Containers
+
+The objective is to run multiple containers here. 
+Each one should be on their own port
+
+1. nginx
+2. MariaDB
+3. httpd (Apache)
+
+each will be on their own port
+
+* Nginx on 80:80
+* MariaDB on 3306:3306
+* httpd on 8080:80
+
+docker container run --publish 80:80 --detach --name nginx nginx
+docker container run --publish 3306:3306 --detach --name db mariadb
+docker container run --publish 8080:80 --detach --name apache httpd
