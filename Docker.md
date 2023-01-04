@@ -187,5 +187,97 @@ each will be on their own port
 * httpd on 8080:80
 
 docker container run --publish 80:80 --detach --name nginx nginx
-docker container run --publish 3306:3306 --detach --name db mariadb
+docker container run --publish 3306:3306 --detach -e MYSQL_ROOT_PASSWORD=secret --name db mariadb:latest
 docker container run --publish 8080:80 --detach --name apache httpd
+
+## Docker inspection of stats
+
+* docker container top - process list in one container
+* docker container inspect - details of one container config
+* docker container stats - performance stats for all containers
+
+## Getting a Shell Inside Containers
+
+* docker container run -it - start new container interactively
+* docker container exec -it - run additional command in existing container
+* Different Linux distros in containers
+
+We don't need to have an SSH server within the container in order to remote in. Docker allows us to start both (Interactivity) and a (tty) service
+
+When starting a container:
+
+docker container run [options] IMAGE [COMMAND] [ARG]
+
+example: docker container run -it --name proxy nginx bash
+
+## How to access a container after the fact
+
+We can utilize the docker container exec command with 2 or more arguments to effect the container after it is created.
+
+for example docker container exec -it db bash will create a bash shell in the root of this database container.
+
+## Alpine linux is super small and has its own package manager
+
+In fact, Alpine is soooo small that it does not include BASH, it actually containes SH
+
+So starting up an alpine container with an open shell looks like this
+
+docker container run -it alpine sh
+
+APK is the package manager for alpine
+
+## Docker Networks: Concepts
+
+* Review of docker container run -p
+* For local dev/testing, networks ususally "just work"
+* Quick port check with docker container port <contianer>
+* Learn concepts of Docker Networking
+* Understand how network packets move around Docker
+
+## Docker Networks Defaults
+
+* Each container connected to a private virtual network "bridge"
+* Each virtual network routes through NAT firewall on host IP
+* All containers on a virtual network can talk to each other without -p
+* Best practice is to create a new virtual network for each app:
+    * network "my-web-app" for mysql and php/apache containers
+    * network "my_api" for mongo and node-js containers
+* "Batteries Included, But Removable"
+    * Defaults work well in many cases, but easy to swap out parts to customize it
+* Make new virtual Networks
+* Attach containers to more then one virtual network (or none)
+* Skip virtual networks and use host IP (--net=host)
+* Use different Docker network drivers to gain new abilities
+* and much more...
+
+## Diving into network interfaces
+
+docker container run -p 80:80 --name web-host -d nginx
+
+docker container inspect --format '{{ .NetworkSettings.IPAddress }}' web-host
+
+docker creates a bridge network or docker0 that is a virtual network. Internal addresses are hidden to external traffic.
+
+## Docker Networks: CLI Management
+
+* Show networks: docker network ls
+* Inspect a network: docker network inspect
+* Create a network: docker network create --driver
+* attach a network to container: docker network connect
+* Detach a network from container: docker network disconnect
+
+## Docker networks: Default Security
+
+* Create your apps so frontend/backend sit on same Docker network
+* Their inter-communication never leaves host
+* All externally exposed ports closed by default
+* You must manually expose via -p, which is better default security!
+
+
+
+
+
+
+
+
+
