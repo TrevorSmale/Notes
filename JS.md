@@ -67,32 +67,31 @@ In mathematics, a number can be checked to be even or odd by checking the remain
     48 % 2 = 0 (48 is Even)
 
 Note: The remainder operator is sometimes incorrectly referred to as the modulus operator. It is very similar to modulus, but does not work properly with negative numbers.
+
 ## Golf script
-'''
-const names = ["Hole-in-one!", "Eagle", "Birdie", "Par", "Bogey", "Double Bogey", "Go Home!"];
 
-function golfScore(par, strokes) {
-  // Only change code below this line
+    const names = ["Hole-in-one!", "Eagle", "Birdie", "Par", "Bogey", "Double Bogey", "Go Home!"];
 
-  if (strokes == 1) {
-    return names[0];
-  } else if (strokes <= par - 2) {
-    return names[1];
-  } else if (strokes === par - 1) {
-    return names[2];
-  } else if (strokes === par) {
-    return names[3];
-  } else if (strokes === par + 1) {
-    return names[4];
-  } else if (strokes === par + 2) {
-    return names[5];
-  } else {
-    return names[6];
-  }
+    function golfScore(par, strokes) {
+    // Only change code below this line
 
-  // Only change code above this line
-}
+    if (strokes == 1) {
+        return names[0];
+    } else if (strokes <= par - 2) {
+        return names[1];
+    } else if (strokes === par - 1) {
+        return names[2];
+    } else if (strokes === par) {
+        return names[3];
+    } else if (strokes === par + 1) {
+        return names[4];
+    } else if (strokes === par + 2) {
+        return names[5];
+    } else {
+        return names[6];
+    }
 
-golfScore(5, 4);
+    // Only change code above this line
+    }
 
-'''
+    golfScore(5, 4);
