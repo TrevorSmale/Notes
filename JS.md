@@ -46,3 +46,53 @@ In camelCase, multi-word variable names have the first word in lowercase and the
 
 exampleCamelCase
 anotherExampleOfThis
+
+## JS mathematics
+
+
+
+The remainder operator % gives the remainder of the division of two numbers.
+
+Example
+
+    5 % 2 = 1 because
+    Math.floor(5 / 2) = 2 (Quotient)
+    2 * 2 = 4
+    5 - 4 = 1 (Remainder)
+
+Usage
+In mathematics, a number can be checked to be even or odd by checking the remainder of the division of the number by 2.
+
+    17 % 2 = 1 (17 is Odd)
+    48 % 2 = 0 (48 is Even)
+
+Note: The remainder operator is sometimes incorrectly referred to as the modulus operator. It is very similar to modulus, but does not work properly with negative numbers.
+## Golf script
+'''
+const names = ["Hole-in-one!", "Eagle", "Birdie", "Par", "Bogey", "Double Bogey", "Go Home!"];
+
+function golfScore(par, strokes) {
+  // Only change code below this line
+
+  if (strokes == 1) {
+    return names[0];
+  } else if (strokes <= par - 2) {
+    return names[1];
+  } else if (strokes === par - 1) {
+    return names[2];
+  } else if (strokes === par) {
+    return names[3];
+  } else if (strokes === par + 1) {
+    return names[4];
+  } else if (strokes === par + 2) {
+    return names[5];
+  } else {
+    return names[6];
+  }
+
+  // Only change code above this line
+}
+
+golfScore(5, 4);
+
+'''
