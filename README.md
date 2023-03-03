@@ -1,4 +1,3 @@
-# Welcome to my collection.
 
 ## [CRUD](CRUD.md)
 ## [WAILS](Wails.md)
