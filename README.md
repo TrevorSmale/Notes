@@ -1,17 +1,5 @@
 # Index
 
-### [WEB-DEV](webdev.md)
-### [HTML](HTML.md)
-### [CSS](CSS.md)
-### [JS](JS.md)
-### [API](webAPI.md)
-### [CRUD](CRUD.md)
-### [GO](Go.md)
-### [GORM](GORM.md)
-### [WAILS](Wails.md)
-### [Passwordless](AUTH.md)
-### [K8S](K8s.md)
-### [GIT](GitBranches.md)
-### [Docker](OCI/Docker.md)
-### [Podman](OCI/Podman.md)
-### [Project-Definition](PD.md)
+
+### [GO](GO/index.md)
+### [OCI]()
