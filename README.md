@@ -1,36 +1,17 @@
 # Index
 
 ### [WEB-DEV](webdev.md)
-
-# Front-End
-
-### HTML
-### CSS
-
+### [HTML](HTML.md)
+### [CSS](CSS.md)
 ### [JS](JS.md)
-
-# Back-End
-
 ### [API](webAPI.md)
 ### [CRUD](CRUD.md)
-
-## GO
-
 ### [GO](Go.md)
 ### [GORM](GORM.md)
 ### [WAILS](Wails.md)
-
-## AUTH
-
-[Passwordless](AUTH.md)
-
-## Devops
-
+### [Passwordless](AUTH.md)
 ### [K8S](K8s.md)
 ### [GIT](GitBranches.md)
 ### [Docker](OCI/Docker.md)
 ### [Podman](OCI/Podman.md)
-
-# Project Management
-
 ### [Project-Definition](PD.md)
