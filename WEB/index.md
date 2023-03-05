@@ -1,3 +1,15 @@
+# WEB
+## Web Development General Notes
+
+### [HTML](HTML.md)
+### [CSS](CSS.md)
+### [JS](JS.md)
+### [GIT](GIT.md)
+### [API's](webAPI.md)
+### [Kubernetes](K8s.md)
+
+---
+
 # Web Dev
 
 ## Notes outlighting the traits of a well rounded web developer 
