@@ -42,3 +42,7 @@ TBA
 * SHELL & RSYNC for automated folder backups to removeable disks.
 
 ---
+
+## Project Notes:
+
+[RSYNC tutorial video youtube](https://www.youtube.com/watch?v=Pygr_TpZRpM)
