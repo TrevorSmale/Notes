@@ -41,6 +41,8 @@ TBA
 * ZSH specially configured for writing and GIT (When online).
 * SHELL & RSYNC for automated folder backups to removeable disks.
 
+This is a tmux test on my remote dev box
+
 ---
 
 ## Project Notes:
