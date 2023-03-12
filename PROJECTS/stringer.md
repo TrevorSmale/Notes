@@ -48,3 +48,5 @@ This is a tmux test on my remote dev box
 ## Project Notes:
 
 [RSYNC tutorial video youtube](https://www.youtube.com/watch?v=Pygr_TpZRpM)
+
+[Tutorial for compute module carrier board](https://www.digikey.com/en/maker/projects/creating-a-raspberry-pi-compute-module-4-cm4-carrier-board-in-kicad/7812da347e5e409aa28d59ea2aaea490)
