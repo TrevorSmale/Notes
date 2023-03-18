@@ -1,5 +1,5 @@
 # TMUX
-## A terminal multiplexor
+## A Terminal Multiplexor
 
 ### This tool is extremely helpful for terminal based work because it enables:
 
@@ -7,7 +7,11 @@
 * Caching of terminal sessions. So one can exit and enter different terminal setups for different jobs.
 * Keeping remote connections alive.
 
-### Commands
+### Links
+
+**[Cheat Sheet](cheatsheet.md)**
+
+### Quck Command Command List
 
 Attach to a previous, most recent session.
 
