@@ -5,3 +5,7 @@ WASM will revolutionize the web as it allows for complex, performance intensive 
 WASM is treated like a compilation target wherein a codebase made with many different languages eg. C++ + RUST can compile to .WAT.
 For example the entire AutoCAD codebase was compiled to Web Assembly and works perfectly within a browser. 
 
+## WAPM.io
+
+A repository of WebAssembly apps and libraries. One can easily created and upload a library tied to ones account for broad distribution and reuse.
+
