@@ -7,6 +7,7 @@
 ### [GIT](GIT.md)
 ### [API's](webAPI.md)
 ### [Kubernetes](K8s.md)
+### [WASM](WASM.md)
 
 ---
 
