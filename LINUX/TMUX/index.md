@@ -11,7 +11,7 @@
 
 **[Cheat Sheet](cheatsheet.md)**
 
-### Quck Command Command List
+### Quck Command List
 
 Attach to a previous, most recent session.
 
