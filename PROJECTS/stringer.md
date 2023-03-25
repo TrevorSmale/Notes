@@ -5,12 +5,21 @@ Stringer is a small form factor computer purpose built for offline writing, loca
 
 ### Why? 
 
-Common computers are expensive, complex, proprietary systems that are increasingly difficult to repair or upgrade. Furthermore, the user experience of modern operating systems are ever changing, highly distracting environments centered around web connectivity and media consumption. Writing for instance requires deep focus, familiar tools and high reliability.
+#### Dedicated Tool
 
-E-Waste is an ever-growing issue that can be mitigated through considerate Design. building a task specific tool that is physically robust, built simply and highly repairable keeps it away from the trash.
+Common computers are sophisticated multitasking devices that threaten to distract us. Writing requires deep focus without the siren call of media consumption. A dedicated writing device and environment is a cathartic reprieve from our overstimulated minds. Distraction free writing tools are popular for this reason.
 
-Several commercialized products by hemingwrite/freewrite are well loved by writing enthusiasts.
-The unit is currently in the intermediate design stages. 
+#### Legacy Tool
+
+Complex and proprietary systems are difficult to repair and E-Waste is an ever-growing issue. This can be remedied through considerate design. Building a task specific tool that is built simply, physically robust, reliable and highly repairable keeps it away from the trash.
+
+#### Offline & Secure
+
+There are commercial writing devices that offer a reliable distraction free experience. However, they lack some fundamental functionality that stringer would provide, that is customizability, openness and the ability to function offline.
+
+### Project Status
+
+The unit is currently in the intermediate design stages. I am gathering gathering 
 
 ---
 
@@ -34,19 +43,17 @@ TBA
 
 ### Project software requirements
 
-* Barebones operating system with power useage optimizations (Diet Pi?) or (Alpine).
-* Minimal Desktop environment (Suckless DWM?)
-* Minimal Terminal (Suckless ST?)
+* Barebones operating system with power useage optimizations Possible candidate operating systems are Diet Pi, Alpine Linux, and Nix OS
+* Minimal Desktop environment (i3 or DWM?)
+* Minimal Terminal (Suckless ST or Alacritty)
+* Terminal Multiplexor (TMUX)
 * Minimal Text Editor (VIM 9) with GOYO, LimeLight, VIM-PENCIL, Proselint, Ale. [Great Resource](https://github.com/MiragianCycle)
-* ZSH specially configured for writing and GIT (When online).
+* ZSH specially configured for writing and GIT (If/When online).
 * SHELL & RSYNC for automated folder backups to removeable disks.
-
-This is a tmux test on my remote dev box
 
 ---
 
 ## Project Notes:
 
-[RSYNC tutorial video youtube](https://www.youtube.com/watch?v=Pygr_TpZRpM)
 
-[Tutorial for compute module carrier board](https://www.digikey.com/en/maker/projects/creating-a-raspberry-pi-compute-module-4-cm4-carrier-board-in-kicad/7812da347e5e409aa28d59ea2aaea490)
+
