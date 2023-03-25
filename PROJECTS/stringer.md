@@ -55,5 +55,8 @@ TBA
 
 ## Project Notes:
 
+## Comparables:
 
+https://hackaday.com/2020/06/09/teardown-the-writer-word-processor/
+https://yarh.io/
 
