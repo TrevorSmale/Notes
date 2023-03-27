@@ -8,4 +8,7 @@
 ### [TMUX - Terminal Multiplexor](TMUX/index.md)
 ### [Better File System](btrfs.md)
 ### [NIX OS](NIX.md)
+### [User Managment](Users.md)
+### [Rsync](Rsync.md)
+### [Network Tools](NetworkTools.md)
 ---

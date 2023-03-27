@@ -8,7 +8,8 @@
 ### [API's](webAPI.md)
 ### [Kubernetes](K8s.md)
 ### [WASM](WASM.md)
-
+### [MySQL](MySQL.md)
+### [NGINX](NGINX.md)
 ---
 
 # Web Dev
