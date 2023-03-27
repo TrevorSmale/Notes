@@ -9,3 +9,4 @@ NVIM (Neo Visual Improved)
 ## LINKS
 
 [Cheat Sheet](cheatsheet.md)
+[Spell Checking](spell.md)
