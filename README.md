@@ -1,7 +1,3 @@
-# Dev Notes
-## My personal development notes
-
----
 ## Topics
 
 ### [WEBDEV](WEB/index.md)
