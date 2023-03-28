@@ -10,6 +10,7 @@
 ### [WASM](WASM.md)
 ### [MySQL](MySQL.md)
 ### [NGINX](NGINX.md)
+### [Muti-Page Applications](MPA.md)
 ---
 
 # Web Dev
