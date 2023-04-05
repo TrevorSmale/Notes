@@ -2,4 +2,5 @@
 
 Study notes for Linux Professional Institutes's Linux Essentials Exam.
 
-## [Notes](index.md)
+## [Notes](LPILE.md)
+## [Commands](commands.md)
