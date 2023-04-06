@@ -11,5 +11,6 @@
 ### [Network Tools](NetworkTools.md)
 ### [CRON JOBS](Cron.md)
 ### [Unix Philosophy](Philosophy.md)
+### [Job Requirements](JR/index.md)
 
 ---
