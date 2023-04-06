@@ -2,6 +2,7 @@
 
 ### [WEBDEV](WEB/index.md)
 ### [LINUX](LINUX/index.md)
+### [CLOUD](CLOUD/index.md)
 ### [GO](GO/index.md)
 ### [OCI](OCI/index.md)
 ### [PRJ MGMT](PM/index.md)

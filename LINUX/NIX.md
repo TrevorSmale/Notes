@@ -145,3 +145,7 @@ An even nicer way to test changes is the following:
 This builds and starts a virtual machine that contains the new system configuration (i.e. a clone of the configuration of the host machine, with any changes that you made to configuration.nix). The VM doesn’t share any data with the host, so you can safely experiment inside the VM. The build-vm command is very efficient (it doesn’t require a disk image for the VM to be created), so it’s a very effective way to test changes.
 
 
+## Flakes
+
+Flakes are like self contained builds of an application and dependancies. To me, they seem similar to a ICS container wherein a build file is created to describe the intended build and the nix package manager takes care of the build and hashing of a complete package. Unlike containers, they is no included operating system and no container engine.
+
