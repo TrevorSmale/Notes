@@ -8,3 +8,4 @@
 ### [PRJ MGMT](PM/index.md)
 ### [PROJECTS](PROJECTS/index.md)
 ### [AI](AI/index.md)
+### [WORKFLOWS](WF/index.md)
