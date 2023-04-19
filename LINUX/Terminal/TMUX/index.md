@@ -7,6 +7,12 @@
 * Caching of terminal sessions. So one can exit and enter different terminal setups for different jobs.
 * Keeping remote connections alive.
 
+### Essential Power User Plug-ins
+
+- [Tmux Plugin Manager 'TPM'](https://github.com/tmux-plugins/tpm)
+- [Tmuxifier](https://github.com/jimeh/tmuxifier)
+- [Tmux Resurrect](https://github.com/tmux-plugins/tmux-resurrect)
+
 ### Links
 
 **[Cheat Sheet](cheatsheet.md)**

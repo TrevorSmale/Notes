@@ -9,3 +9,4 @@
 ### [PROJECTS](PROJECTS/index.md)
 ### [AI](AI/index.md)
 ### [WORKFLOWS](WF/index.md)
+### [BLENDER 3D](BLENDER/index.md)
