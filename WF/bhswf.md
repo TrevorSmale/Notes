@@ -1,2 +1,4 @@
-# Build a Hugo Site
+# Mastering HUGO: Building Dynamic Websites with Markdown
+
+
 

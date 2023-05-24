@@ -1,550 +1,309 @@
-# My Structured Query Language
-## A databasing system
+## MySQL Functions
 
-### Naming Convention
+### 1. CONCAT
+The `CONCAT` function is used to concatenate two or more strings together. It takes multiple string arguments and returns a single string that is the concatenation of all the input strings.
 
--   **Singular form**. Both tables and columns.
--   Be consistent! Doesn't matter if you use camelCase or snake_case. Use whatever the front-end uses.
--   Avoid abbreviations or prefixes.
--   Use unique names that cannot collude with SQL/RDBMS reserved words (avoid name, order, percent...) **or** use a trailing underscore.
--   Do not use the table name followd by “id” (e.g. client_id) as your PK. id is more than enough and everyone will understand.
--   Never use capital letters in your table or field names. Ever.
-
-### Performance
-
--   Always foreign key to IDs, rather than column values.
--   Try to stick to `where` clauses on indexed columns, instead of `like`.
--   Don't go crazy with `joins`.
--   Don't use varchar(255). Try to use the lowest number possible.
-
-# RAM usage
-
-SQL engines will consume as much memory as you will allow.
-
-The reason for this is that the engine caches the data in RAM, so that it can access if faster than it could if it needed to read the data from the disk every time a user needed it.
-
-# Install MySQL
-
-```bash
-sudo apt install mysql-server
-
-sudo mysql_secure_installation
-# Change root password to more secure.
-# Remove anonymous users.
-# Disable remote root login. Root should only connect via `localhost`.
-# Remove test database and access to it.
-# Reload privilege tables.
-
-sudo /etc/init.d/mysql start
-# sudo service mysql start
-# systemctl restart mysql
-```
-
-### Remove MySQL
-
-```bash
-sudo apt remove --purge mysql*
-sudo apt purge mysql*
-sudo apt autoremove
-sudo apt autoclean
-sudo apt remove dbconfig-mysql
-```
-
-# Status
-
-```bash
-sudo systemctl status mysql
-sudo systemctl start mysql
-
-sudo /etc/init.d/mysql status
-sudo /etc/init.d/mysql start
-```
-
-# Login
-
-```bash
-# Log into MySQL as root, with password.
-sudo mysql -u root -p
-```
-
-# Run script
-
-```bash
-# Run global script
-mysql -u user -p < db.sql
-
-# Run database specific script
-mysql -u user -p db_name < db.sql
-
-# Output results
-mysql -u user -p db_name < db.sql > /tmp/output.txt
-```
-
-# Command line
-
-[Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/a-basic-mysql-tutorial)
-
-Commands are **not** case sensitive, but table names are. **All commands must end with** `;`.
-
-`;` - Execute/End current command.  
-`ENTER` - Starts a new line. `;` is expected.
-
-# Users
-
+Example:
 ```sql
--- Create user
-CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
-
--- Give access to certain areas. In this case, it's for everything as *.* stands for dbName.tableName i.e. all of them.
-GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost';
-
--- Reload the privileges.
-FLUSH PRIVILEGES;
-
--- List all users.
-SELECT user FROM mysql.user;
-
--- Show current user.
-SELECT CURRENT_USER();
-
--- Delete user.
-DROP USER 'user'@'localhost';
+SELECT CONCAT('Hello', ' ', 'World') AS Result;
+```
+Output:
+```
+Hello World
 ```
 
-## Permissions
+### 2. SUBSTRING
+The `SUBSTRING` function allows you to extract a substring from a given string. It takes three arguments: the input string, the starting position, and the length of the substring to be extracted.
 
-**Options:** ALL PRIVILEGES, CREATE, DROP, DELETE, INSERT, SELECT, UPDATE, GRANT OPTION (User can give permissions).
-
+Example:
 ```sql
--- Give a specific permission, for a specific table.
-GRANT permission ON dbName.tableName TO '<user>'@'localhost';
-
--- Remove a permission.
-REVOKE permission ON dbName.tableName FROM '<user>'@'localhost';
+SELECT SUBSTRING('Hello World', 7, 5) AS Result;
+```
+Output:
+```
+World
 ```
 
-## Change password
+### 3. DATE_FORMAT
+The `DATE_FORMAT` function is used to format a date or time value according to a specified format. It takes two arguments: the date or time value and the format string specifying the desired output format.
 
+Example:
 ```sql
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
-FLUSH PRIVILEGES;
-
-ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'MyNewPass';
-FLUSH PRIVILEGES;
+SELECT DATE_FORMAT(NOW(), '%Y-%m-%d') AS Result;
+```
+Output:
+```
+2023-05-24
 ```
 
-# Database
+### 4. COUNT
+The `COUNT` function is used to count the number of rows in a result set or the number of occurrences of a specified expression. It can be used with the `*` wildcard or a specific column name.
 
+Example:
 ```sql
-SHOW DATABASES;              -- List databases.
-SELECT database();           -- Show current database.
-USE dbName;                 -- Select a database.
-
-CREATE DATABASE dbName;     -- Create a database.
-DROP DATABASE dbName;       -- Delete a database.
+SELECT COUNT(*) AS TotalRows FROM table;
+```
+Output:
+```
+TotalRows: 10
 ```
 
-# Tables
+### 5. AVG
+The `AVG` function calculates the average value of a numeric column in a table. It takes a column name as an argument and returns the average value.
 
-### Create
-
+Example:
 ```sql
-SHOW TABLES;                 -- List all tables.
-DESCRIBE tableName;         -- Display columns and types.
-
--- Shows the query that creates the table.
-SHOW CREATE TABLE tableName;
-
--- Create a table.
-CREATE TABLE tableName (column1 DATATYPE, column2 DATATYPE);
-
--- Example
-CREATE TABLE user (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- Important
-    name VARCHAR(255),
-    pass VARCHAR(255)
-);
+SELECT AVG(column) AS AverageValue FROM table;
+```
+Output:
+```
+AverageValue: 25.5
 ```
 
-### Modify
+### 6. MAX
+The `MAX` function returns the maximum value from a specified column in a table. It can be used with numeric, string, or date/time columns.
 
+Example:
 ```sql
--- Rename a table.
-RENAME TABLE tableName1 TO tableName2;
-
--- Change a column's datatype.
-ALTER TABLE tablename MODIFY columnname DATATYPE;
-
--- Add a column at end.
-ALTER TABLE tableName ADD columnName DATATYPE;
-
--- Add a column at certain location.
-ALTER TABLE tableName ADD columnName DATATYPE AFTER columnName;
-
--- Delete a column.
-ALTER TABLE tableName DROP columnName;
-
--- Change a column name. Has to be backticks.
-ALTER TABLE tableName CHANGE `oldcolname` `newcolname` datatype(length);
-
--- Reset AUTO_INCREMENT id. For this to work, the table must be empty.
-ALTER TABLE table AUTO_INCREMENT = 1;
+SELECT MAX(column) AS MaxValue FROM table;
+```
+Output:
+```
+MaxValue: 100
 ```
 
-### Delete
+### 7. MIN
+The `MIN` function returns the minimum value from a specified column in a table. It is similar to the `MAX` function but returns the smallest value instead.
 
-Be **VERY** careful with this one. **ALWAYS** select first, delete second.
-
+Example:
 ```sql
-DROP TABLE tableName;
+SELECT MIN(column) AS MinValue FROM table;
+```
+Output:
+```
+MinValue: 10
 ```
 
-## Foreign Keys
+### 8. SUM
+The `SUM` function calculates the sum of all values in a numeric column. It takes a column name as an argument and returns the total sum.
 
-They are used for **data integrity** i.e. they prevent entering values that don't exist in the linked table (gives an error).
-
-A FOREIGN KEY is a field in one table that refers to the PRIMARY KEY in another table.
-
-The table containing the foreign key is called the child table, and the table containing the candidate key is called the referenced or parent table.
-
+Example:
 ```sql
--- Foreign key definition during table creation.
-CREATE TABLE user (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255),
-    pass VARCHAR(255),
-    phoneId INT,
-    FOREIGN KEY (phoneId) REFERENCES phone(id)
-);
-
--- Add foreign key.
-ALTER TABLE table1 ADD FOREIGN KEY (idColumn) REFERENCES table2(idColumn);
-
--- Remove foreign key.
-ALTER TABLE tableName DROP FOREIGN KEY FK_columnName;
+SELECT SUM(column) AS TotalSum FROM table;
+```
+Output:
+```
+TotalSum: 1000
 ```
 
+### 9. ROUND
+The `ROUND` function is used to round a numeric value to a specified number of decimal places. It takes two arguments: the input value and the number of decimal places.
+
+Example:
 ```sql
--- List foreign keys.
-SELECT
-    tableName,
-    COLUMNNAME,
-    CONSTRAINT_NAME,
-    REFERENCED_tableName,
-    REFERENCED_COLUMNNAME
-FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE
-    REFERENCED_tableName = 'my_table';
-
--- One-liner.
-SELECT tableName, COLUMNNAME, CONSTRAINT_NAME, REFERENCED_tableName, REFERENCED_COLUMNNAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_tableName = 'my_table';
+SELECT ROUND(3.14159, 2) AS RoundedValue;
+```
+Output:
+```
+RoundedValue: 3.14
 ```
 
-# Records
+### 10. NOW
+The `NOW` function returns the current date and time in the format 'YYYY-MM-DD HH:MM:SS'. It does not require any arguments.
 
+Example:
 ```sql
--- Get records.
-SELECT * FROM tableName;
-
--- Add record.
-INSERT INTO tableName (column1, column2) VALUES (value1, value2);
-
--- Example
-INSERT INTO user (id, name, pass)
-VALUES (NULL, 'john', 'abc123');
-
--- Modify record.
-UPDATE tableName SET columnName = 'value' WHERE criteria;
-
--- Example
-UPDATE user SET name = 'Mike' WHERE id = 1;
-
--- Delete record.
-DELETE FROM tableName WHERE columnName = <value>;
+SELECT NOW() AS CurrentDateTime;
+```
+Output:
+```
+CurrentDateTime: 2023-05-24 10:30:00
 ```
 
-### INSERT ON DUPLICATE KEY UPDATE
+### 11. GROUP_CONCAT
+The
 
-Insert if `id` doesn't exit. Else, update the data at said `id`.
+ `GROUP_CONCAT` function concatenates the values of a specified column into a single string, separated by a specified delimiter. It can also apply an ordering to the concatenated values.
 
+Example:
 ```sql
-+----+--------------+
-| id | columnName   |
-+----+--------------+
-|  1 | foo          |
-|  2 | bar          |
-|  3 | baz          |
-+----+--------------+
-
-INSERT INTO table (id, columnName)
-VALUES
-    (1, 'qux'),
-    (null, 'hex')
-ON DUPLICATE KEY UPDATE
-    columnName = values(columnName);
-
-+----+--------------+
-| id | columnName   |
-+----+--------------+
-|  1 | qux          | -- Value updated
-|  2 | bar          |
-|  3 | baz          |
-|  4 | hex          | -- Inserted row
-+----+--------------+
+SELECT GROUP_CONCAT(column ORDER BY column ASC SEPARATOR ', ') AS ConcatenatedValues FROM table;
+```
+Output:
+```
+ConcatenatedValues: value1, value2, value3
 ```
 
-# Size
+### 12. IFNULL
+The `IFNULL` function returns the first non-null expression in a list. It takes two arguments: the first expression and the second expression to be returned if the first one is null.
 
+Example:
 ```sql
--- Check the size of all the databases
-SELECT
-	table_schema,
-	ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) "Size (MB)"
-FROM information_schema.TABLES
-GROUP BY table_schema;
-
--- Check the size of all the tables in a database
-SELECT
-	  table_name,
-    ROUND(((data_length + index_length) / 1024 / 1024), 2) "Size (MB)"
-FROM information_schema.TABLES
-WHERE table_schema = "DATABASE_NAME" -- DATABASE_NAME
-ORDER BY (data_length + index_length) DESC;
+SELECT IFNULL(column, 'N/A') AS Result FROM table;
+```
+Output:
+```
+Result: value or N/A
 ```
 
-# Timezone
+### 13. LOWER
+The `LOWER` function converts a string to lowercase. It takes a string as an argument and returns the lowercase version of the string.
 
-1. Add this line in `/etc/mysql/my.cnf`
-
-```bash
-[mysqld]
-default-time-zone = "+01:00"
-```
-
-2. Restart the server
-
-```
-sudo service mysql restart
-```
-
-# Backup
-
-To do this, we use the `mysqldump` command which creates a file with the SQL statements necessary to re-create the database.
-
-With `--all-databases` or `--databases`, mysqldump writes `CREATE DATABASE` and `USE` statements prior to the dump output for each database, in order to insure the data goes to the right database.
-
-```bash
-# Dump just the data, without creating the database
-mysqldump dbName > backup.sql
-
-mysqldump --add-drop-table --databases dbName > backup.sql
-
-# Simplest command.
-mysqldump --databases dbName > backup.sql
-
-# Multiple databases.
-mysqldump --databases db1 db2 > backup.sql
-
-# Everything.
-mysqldump --all-databases > backup.sql
-
-# Prompt for password.
-mysqldump -p --databases dbName > backup.sql
-```
-
-Options
-
-```bash
-# Add DROP DATABASE statement before each CREATE DATABASE statement
---add-drop-database
-
-# Add DROP TABLE statement before each CREATE TABLE statement
---add-drop-table
-
-# Only database structure, without contents.
---no-data
-```
-
-## Automated
-
-```bash
-# backup database - backup-db-name-20200903-032043.sql
-mysqldump -u root --password="db-pass" --databases db-name > /home/user/backups/"backup-db-name-$(date +%Y%m%d-%H%M%S).sql"
-
-# Edit crontabs i.e Add a cron job that runs as root. Opens editor.
-sudo crontab -e
-
-# backup database every day at 23:59
-59 23 * * * mysqldump -u root --password="db-pass" --databases db-name > /home/user/backups/"backup-db-name-$(date +%Y%m%d-%H%M%S).sql"
-
-# backup ALL databases every day at 23:59
-59 23 * * * mysqldump -u root --password="db-pass" --all-databases > /home/user/backups/"backup-all-$(date +%Y%m%d-%H%M%S).sql"
-```
-
-# Restore
-
-If the dump was created without using `--databases`, then the database must be manually created before restoring.
-
-Also, the database must be specified with `mysql dbName < backup.sql`.
-
-Otherwise, just use:
-
-```bash
-# Restore a database.
-mysql < backup.sql
-
-# Prompt for password.
-mysql -p < backup.sql
-
-# From a compressed file.
-gzip -d < backup.sql.gz | mysql
-
-# If the database already exists and we want to restore it.
-mysql dbName < backup.sql
-```
-
-# Transfer
-
-Copy data from one database into another.
-
-```
-mysqldump -u root -p'password' source_db | mysql -u root -p'password' target_db
-```
-
-# Import/Export
-
-**Import from remote to local**
-
-```bash
-remotepath="/remote/path/backups/"
-localpath="/local/path/backups/"
-
-filename="dbname-$(date +%Y%m%d-%H%M%S)-import"
-
-echo "backup: $filename"
-
-echo "creating backup at remote server..."
-ssh user@123.456.789.255 "mysqldump -u root --password="pass" --databases dbname > $remotepath$filename"\
-\
-&& echo "downloading backup from remotepath to local..." \
-&& rsync -av user@123.456.789.255:$remotepath$filename $localpath \
-\
-&& echo "importing backup into local mysql..." \
-&& mysql -u root --password="pass" < $localpath$filename
-```
-
-**Export from local to remote**
-
-```bash
-remotepath="/remote/path/backups/"
-localpath="/local/path/backups/"
-
-filename="dbname-$(date +%Y%m%d-%H%M%S)-export"
-
-echo "backup: $filename"
-
-echo "creating local backup..."
-mysqldump -u root --password="" dbname > $localpath$filename \
-\
-&& echo "transfering backup from local to remotepath..." \
-&& rsync -av -e 'ssh' $localpath$filename user@123.456.789.255:$remotepath \
-\
-&& echo "importing transfered backup into remote mysql..." \
-&& ssh user@123.456.789.255 "mysql -u root --password="pass" dbname < $remotepath$filename" \
-```
-
-# MySQL Workbench
-
-## Creating a Database
-
-1. Create a localhost connection as root on port 3306.
-2. Create a model **AND** name it.
-3. Forward Engineer the model in the localhost connection.
-4. Find the created database and populate it.
-
-## Terminology
-
-`Model` holds all the schemas. There can be many modes, and each can have many schemas.
-
-`Schema` is the overall design of the database which defines the tables, number of columns, foreign keys... This rarely changed, if at all...
-
-`EER Diagram` is a visual representation of a schema with boxes for tables and lines for table relations.
-
-`Database` is an instance of a schema. It's also where the data lives.
-
-A database is created by forward engineering a schema. An existing database is expanded with the new schema objects, but it does not alter the existing ones.
-
-To overwrite them, the tables need to be dropped first, which is an option during the forward engineering.
-
-`Meta-data` is data about the database i.e. where the schema is stored.
-
-# Tuning
-
-```bash
-sudo apt install mysqltuner
-```
-
-It's a utility used to find out what could be done in order to optimize MySQL for the hardware and workload.
-
-It needs a bit of data to work properly, so a period should pass before running it, as it looks for usage patterns.
-
-To run it, just use `mysqltuner`.
-
-# Dynamic Columns / Pivot
-
+Example:
 ```sql
-SET @sql = NULL;
-SET @textColumns = NULL;
-SET @numberColumns = NULL;
-SET @dateColumns = NULL;
+SELECT LOWER('Hello World') AS Result;
+```
+Output:
+```
+Result: hello world
+```
 
-SELECT
-  GROUP_CONCAT(
-	DISTINCT CONCAT('max(IF(f.uid = ''', f.uid, ''', dt.value, NULL))', f.uid)
-  ) INTO @textColumns
-FROM dataText dt
-	left join field f on f.id = dt.fieldId
-    left join entity e on e.id = f.entityId
-where e.uid = 'XirQSpRrPP';
+### 14. UPPER
+The `UPPER` function converts a string to uppercase. It takes a string as an argument and returns the uppercase version of the string.
 
-SELECT
-  GROUP_CONCAT(
-	DISTINCT CONCAT('max(IF(f.uid = ''', f.uid, ''', dn.value, NULL))', f.uid)
-  ) INTO @numberColumns
-FROM dataNumber dn
-	left join field f on f.id = dn.fieldId
-    left join entity e on e.id = f.entityId
-where e.uid = 'XirQSpRrPP';
+Example:
+```sql
+SELECT UPPER('Hello World') AS Result;
+```
+Output:
+```
+Result: HELLO WORLD
+```
 
-SELECT
-  GROUP_CONCAT(
-	DISTINCT CONCAT('max(IF(f.uid = ''', f.uid, ''', dd.value, NULL))', f.uid)
-  ) INTO @dateColumns
-FROM dataDate dd
-	left join field f on f.id = dd.fieldId
-    left join entity e on e.id = f.entityId
-where e.uid = 'XirQSpRrPP';
+### 15. TRIM
+The `TRIM` function removes leading and trailing spaces from a string. It takes a string as an argument and returns the string with leading and trailing spaces removed.
 
-SET @sql = CONCAT('
-	select
-		r.id,
-		r.uid,
-		', @textColumns, ',
-		', @numberColumns, ',
-        ', @dateColumns, '
-   from record r
-		left join entity e on e.id = r.entityId
-		left join field f on f.entityId = e.id
-		left join dataText dt on dt.recordId = r.id
-		left join dataNumber dn on dn.recordId = r.id
-        left join dataDate dd on dd.recordId = r.id
-	where e.uid = ''XirQSpRrPP''
-	group by
-		r.id,
-		r.uid
-');
+Example:
+```sql
+SELECT TRIM('   Hello World   ') AS Result;
+```
+Output:
+```
+Result: Hello World
+```
 
-PREPARE stmt FROM @sql;
-EXECUTE stmt;
-DEALLOCATE PREPARE stmt;
+## MySQL Actions
+
+### 1. SELECT
+The `SELECT` statement is used to retrieve data from one or more tables in a database. It allows you to specify the columns to be retrieved and the conditions for filtering the data.
+
+Example:
+```sql
+SELECT column1, column2 FROM table WHERE condition;
+```
+
+### 2. INSERT
+The `INSERT` statement is used to insert new rows into a table. It allows you to specify the table name, the column names, and the values to be inserted.
+
+Example:
+```sql
+INSERT INTO table (column1, column2) VALUES (value1, value2);
+```
+
+### 3. UPDATE
+The `UPDATE` statement is used to modify existing rows in a table. It allows you to set new values for one or more columns based on specified conditions.
+
+Example:
+```sql
+UPDATE table SET column1 = value1, column2 = value2 WHERE condition;
+```
+
+### 4. DELETE
+The `DELETE` statement is used to delete one or more rows from a table. It allows you to specify conditions to filter the rows to be deleted.
+
+Example:
+```sql
+DELETE FROM table WHERE condition;
+```
+
+### 5. CREATE
+The `CREATE` statement is used to create a new table, view, or index in a database. It allows you to specify the table structure, column names, data types, and constraints.
+
+Example:
+```sql
+CREATE TABLE table (column1 datatype, column2 datatype, ...);
+```
+
+### 6. ALTER
+The `ALTER` statement is used to modify the structure of an existing table. It allows you to add or drop columns, change column data types, and modify table constraints.
+
+Example:
+```sql
+ALTER TABLE table ADD column datatype;
+```
+
+### 7. DROP
+The `DROP` statement is used to delete an existing table, view, or index from a database. It permanently removes the specified object and all associated data.
+
+Example:
+```sql
+DROP TABLE table;
+```
+
+### 8. TRUNCATE
+The `TRUNCATE` statement is used to delete all rows from a table while keeping its structure intact. It is faster than the DELETE statement as it does not generate individual delete operations.
+
+Example:
+```sql
+TRUNCATE TABLE table;
+```
+
+### 9. GRANT
+The `GRANT` statement is used to grant specific privileges to a user or a user group in a database. It allows you to control access and permissions for different database objects.
+
+Example:
+```sql
+GRANT privilege ON database.object TO user;
+```
+
+### 10. REVOKE
+The `REVOKE` statement is used to revoke previously granted privileges from a user or a user group. It allows you to remove access and permissions for specific database objects.
+
+Example:
+```sql
+REVOKE privilege ON database.object FROM user;
+```
+
+### 11. COMMIT
+The `COMMIT` statement is used to save all the changes made in the current transaction. It makes the changes permanent and releases any locks held on the affected data.
+
+Example:
+```sql
+COMMIT;
+```
+
+### 12. ROLLBACK
+The `ROLLBACK` statement is used to undo all the changes made in the current transaction. It restores the data to its original state before the transaction began.
+
+Example:
+```sql
+ROLLBACK;
+```
+
+### 13. SAVEPOINT
+The `SAVEPOINT` statement is used to create a named point within a transaction. It allows you to mark a specific point to which you can roll back if needed.
+
+Example:
+```sql
+SAVEPOINT savepoint_name;
+```
+
+### 14
+
+. START TRANSACTION
+The `START TRANSACTION` statement is used to begin a new transaction. It sets a starting point for a series of database operations that can be either committed or rolled back.
+
+Example:
+```sql
+START TRANSACTION;
+```
+
+### 15. SET AUTOCOMMIT
+The `SET AUTOCOMMIT` statement is used to control the automatic commit behavior for each SQL statement. It determines whether each statement is committed immediately or waits for an explicit commit.
+
+Example:
+```sql
+SET AUTOCOMMIT = 0;
+```
+
 ```
